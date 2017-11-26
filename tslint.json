@@ -21,8 +21,7 @@
     "import-spacing": true,
     "indent": [
       true,
-      "tabs",
-      2
+      "spaces"
     ],
     "interface-over-type-literal": true,
     "label-position": true,
@@ -35,10 +34,10 @@
       true,
       {
         "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
+          "public-static-field",
+          "public-instance-field",
+          "public-static-method",
+          "public-instance-method"
         ]
       }
     ],
