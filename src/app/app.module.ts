@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }         from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { CourseComponent } from './pages/courses/course/course.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ToolboxComponent } from './toolbox/toolbox.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -20,10 +22,12 @@ import { ToolboxComponent } from './toolbox/toolbox.component';
     CourseComponent,
     LoginComponent,
     NavbarComponent,
-    ToolboxComponent
+    ToolboxComponent,
+    FooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

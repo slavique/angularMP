@@ -1,4 +1,9 @@
 <div class="toolbox">
-  <input type="text" placeholder="Name fragment or date">
-  <input type="submit" value="FIND">
+  <div class="search-container">
+    <input type="text"  [(ngModel)]="searchString" placeholder="Name fragment or date...">
+    <button class="find-course" type="submit" (click)="findCourse()">FIND</button>
+    <button class="add-course">ADD COURSE</button>
+  </div>
+
+
 </div>

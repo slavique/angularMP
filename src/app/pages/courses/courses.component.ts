@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges,
+  DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
+  AfterViewChecked, OnDestroy } from '@angular/core';
 import { Course } from '../../shared/course.model';
 import { Courses } from '../../shared/courses';
 
@@ -7,15 +9,40 @@ import { Courses } from '../../shared/courses';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent implements OnInit {
-  public courses: Course[]
+export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
+  AfterViewInit, AfterViewChecked, OnDestroy {
+  public courses: Course[];
   constructor() { }
 
   ngOnInit() {
-    this.courses = Courses
+    console.log("ngOnInit hook!!");
+    this.courses = Courses;
   }
-  removeCourse(course: Course) {
-    // this.courses.splice(this.courses.indexOf(course), 1)
-    console.log('remove Course!!!!!!!!!!!!!!')
+
+  deleteCourse($event) {
+    console.log('delete COURSE: ' + $event.value.id);
+    this.courses.splice(this.courses.indexOf($event.value), 1)
   }
+  ngOnChanges() {
+    console.log("ngOnChanges hook!!");
+  }
+  ngDoCheck() {
+    console.log("ngDoCheck hook!!");
+  }
+  ngAfterContentInit() {
+    console.log("ngAfterContentInit hook!!");
+  }
+  ngAfterContentChecked() {
+    console.log("ngAfterContentChecked hook!!");
+  }
+  ngAfterViewInit() {
+    console.log("ngAfterViewInit hook!!");
+  }
+  ngAfterViewChecked() {
+    console.log("ngAfterViewChecked hook!!");
+  }
+  ngOnDestroy() {
+    console.log("ngOnDestroy hook!!");
+  }
+
 }

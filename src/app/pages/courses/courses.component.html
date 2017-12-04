@@ -1,17 +1,5 @@
 <ul *ngFor="let course of courses">
   <li>
-    <div class="course">
-      <span class="title">{{course.title}}</span>
-      <span class="description">{{course.description}}</span>
-      <span class="duration">Duration: {{course.duration}}</span>
-      <span class="date">{{course.date}}</span>
-      <br>
-      <button (click)="removeCourse(course)">DELETE</button>
-      <button (click)="removeCourse(course)">EDIT COURSE</button>
-
-    </div>
-
-
+    <app-course [course]="course" (deletion)="deleteCourse($event)"></app-course>
   </li>
-
 </ul>

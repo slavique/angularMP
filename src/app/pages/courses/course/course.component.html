@@ -1,3 +1,9 @@
-<p>
-  course works!
-</p>
+<div class="course">
+  <span class="title">{{course.title}}</span>
+  <span class="description">{{course.description}}</span>
+  <span class="duration">Duration: {{course.duration}}</span>
+  <span class="date">{{course.date}}</span>
+  <br>
+  <button (click)="removeCourse()">DELETE</button>
+  <button>EDIT COURSE</button>
+</div>
