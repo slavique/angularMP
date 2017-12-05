@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges,
   DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
   AfterViewChecked, OnDestroy } from '@angular/core';
-import { Course } from '../shared/course.model';
-import { Courses } from '../shared/courses';
+import { Course } from './shared/course.model';
+import { Courses } from './shared/courses';
 
 @Component({
   selector: 'app-courses',
