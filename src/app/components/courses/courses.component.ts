@@ -15,34 +15,34 @@ export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterConten
   constructor() { }
 
   ngOnInit() {
-    console.log("ngOnInit hook!!");
+    console.log('ngOnInit hook!!');
     this.courses = Courses;
   }
 
   deleteCourse($event) {
     console.log('delete COURSE: ' + $event.value.id);
-    this.courses.splice(this.courses.indexOf($event.value), 1)
+    this.courses.splice(this.courses.indexOf($event.value), 1);
   }
   ngOnChanges() {
-    console.log("ngOnChanges hook!!");
+    console.log('ngOnChanges hook!!');
   }
   ngDoCheck() {
-    console.log("ngDoCheck hook!!");
+    console.log('ngDoCheck hook!!');
   }
   ngAfterContentInit() {
-    console.log("ngAfterContentInit hook!!");
+    console.log('ngAfterContentInit hook!!');
   }
   ngAfterContentChecked() {
-    console.log("ngAfterContentChecked hook!!");
+    console.log('ngAfterContentChecked hook!!');
   }
   ngAfterViewInit() {
-    console.log("ngAfterViewInit hook!!");
+    console.log('ngAfterViewInit hook!!');
   }
   ngAfterViewChecked() {
-    console.log("ngAfterViewChecked hook!!");
+    console.log('ngAfterViewChecked hook!!');
   }
   ngOnDestroy() {
-    console.log("ngOnDestroy hook!!");
+    console.log('ngOnDestroy hook!!');
   }
 
 }

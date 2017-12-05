@@ -8,7 +8,7 @@ import { Course } from '../../../shared/course.model';
 })
 export class CourseComponent implements OnInit {
   @Input('course') course: Course;
-  @Output('deletion') courseDeletion = new EventEmitter();
+  @Output() deletion = new EventEmitter();
 
   constructor() { }
 
@@ -17,6 +17,6 @@ export class CourseComponent implements OnInit {
   }
 
   removeCourse() {
-    this.courseDeletion.emit({value: this.course});
+    this.deletion.emit({value: this.course});
   }
 }

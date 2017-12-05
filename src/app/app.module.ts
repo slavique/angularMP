@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }         from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { PagesComponent } from './pages/pages.component';
-import { CoursesComponent } from './pages/courses/courses.component';
-import { CourseComponent } from './pages/courses/course/course.component';
-import { LoginComponent } from './login/login.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ToolboxComponent } from './toolbox/toolbox.component';
-import { FooterComponent } from './footer/footer.component';
+import { PagesComponent } from './components/pages.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { CourseComponent } from './components/courses/course/course.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ToolboxComponent } from './components/toolbox/toolbox.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
