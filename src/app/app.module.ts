@@ -4,20 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { PagesComponent } from './components/pages.component';
-import { CoursesComponent } from './components/courses/courses.component';
-import { CourseComponent } from './components/courses/course/course.component';
-import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ToolboxComponent } from './components/toolbox/toolbox.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { CoursesComponent } from './courses/courses.component';
+import { CourseComponent } from './courses/course/course.component';
+import { LoginComponent } from './courses/login/login.component';
+import { NavbarComponent } from './courses/navbar/navbar.component';
+import { ToolboxComponent } from './courses/toolbox/toolbox.component';
+import { FooterComponent } from './courses/footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PagesComponent,
     CoursesComponent,
     CourseComponent,
     LoginComponent,
