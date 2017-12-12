@@ -2,21 +2,25 @@ import { Component, OnInit, OnChanges,
   DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
   AfterViewChecked, OnDestroy } from '@angular/core';
 import { Course } from './shared/course.model';
-import { Courses } from './shared/courses';
+import { CoursesService } from './services/courses.service';
+
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
+  providers: [CoursesService],
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   public courses: Course[];
-  constructor() { }
+  constructor(
+    private _coursesService: CoursesService
+  ) { }
 
   ngOnInit() {
     console.log('ngOnInit hook!!');
-    this.courses = Courses;
+    this.courses = this._coursesService.getCoursesList();
   }
 
   deleteCourse($event) {

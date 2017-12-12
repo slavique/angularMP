@@ -1,6 +1,6 @@
 import {Course} from './course.model';
 
-export const Courses: Course[] = [
+export const COURSES: Course[] = [
   {
     title: 'Window cleaning',
     description: 'How to master window cleaning in 3 hours.',
