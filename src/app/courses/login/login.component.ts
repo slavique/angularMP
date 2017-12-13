@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  public isLoginState: boolean = true;
   constructor() { }
 
+
   ngOnInit() {
+    this.isLoginState = true;
   }
 
 }

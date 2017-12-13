@@ -2,9 +2,8 @@
   <img class="logo" src="logo.png" alt="LOGO" height="4%" width="4%">
   <span>COURSES</span>
   <div class="sign-in">
-    <span>Log in</span>
+    <span *ngIf="!isAuthenticated" (click)="showLoginPage()">Log in</span>
     <br>
-    <span>Log out</span>
+    <span *ngIf="isAuthenticated">Log out</span>
   </div>
-
 </div>
