@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-// import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../services/authorization.service';
 
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  providers: [AuthService],
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
@@ -19,8 +17,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.isAuthenticated = this._authService.isAuthenticated()
   }
-  showLoginPage(){
+  showLoginPage() {
     console.log('NAVBAR COMPONENT showLoginPage!!!!!!!!!!!!!!!');
-    this._authService.setLoginState()
+    this._authService.setLoginState();
   }
 }

@@ -3,17 +3,21 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class AuthService {
   public isLoginState: boolean;
+  protected readonly storage = localStorage;
 
-  logIn() {
-
+  public login(user: string, token: string): void {
+    console.log('user: ' + user + ', ' + 'token: ' + token);
+    this.storage.setItem('userName', JSON.stringify(user));
+    this.storage.setItem('token', JSON.stringify(token));
   }
 
-  logOut() {
-
+  public logout(): void {
+    this.storage.removeItem('userName');
+    this.storage.removeItem('token');
   }
 
   isAuthenticated() {
-    return false
+    return false;
   }
 
   getUserInfo() {
@@ -24,7 +28,7 @@ export class AuthService {
 
     this.isLoginState = true;
   }
-  getLoginState(){
+  getLoginState() {
     console.log('AUTH SERVICE GET LOGIN STATE !!!!!!!!!!!!!!!');
 
     return this.isLoginState;
