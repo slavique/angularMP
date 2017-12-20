@@ -18,6 +18,8 @@ export class CourseComponent implements OnInit {
   }
 
   removeCourse() {
-    this.deletion.emit({value: this.course});
+    if (window.confirm('Do you really want to delete this course?')) {
+      this.deletion.emit({value: this.course});
+    }
   }
 }
