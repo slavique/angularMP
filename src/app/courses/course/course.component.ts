@@ -10,7 +10,8 @@ export class CourseComponent implements OnInit {
   @Input('course') course: Course;
   @Output() deletion = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
 

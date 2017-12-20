@@ -12,6 +12,11 @@ import { NavbarComponent } from './courses/navbar/navbar.component';
 import { ToolboxComponent } from './courses/toolbox/toolbox.component';
 import { FooterComponent } from './courses/footer/footer.component';
 
+import { BorderHighlightDirective } from './courses/directives/highlightBorder.directive';
+import { FormatDurationPipe } from './courses/pipes/formatDuration.pipe';
+import { OrderByPipe } from './courses/pipes/orderBy.pipe';
+
+
 
 
 @NgModule({
@@ -22,7 +27,10 @@ import { FooterComponent } from './courses/footer/footer.component';
     LoginComponent,
     NavbarComponent,
     ToolboxComponent,
-    FooterComponent
+    FooterComponent,
+    BorderHighlightDirective,
+    FormatDurationPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

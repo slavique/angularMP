@@ -1,8 +1,18 @@
 .course {
-  margin: 5%;
+  margin: 2%;
+  padding: 2%;
+  border: 0.2em solid;
+  /*border-color: red;*/
 }
 .title {
   color: crimson;
   font-size: 2em;
   font-weight: 400;
+}
+.top-rated {
+  background-color: aliceblue;
+}
+.top-rated img {
+  width: 1.2em;
+  margin: 0.5% 1% 1% 1%;
 }
