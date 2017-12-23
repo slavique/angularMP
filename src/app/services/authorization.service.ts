@@ -23,7 +23,7 @@ export class AuthService {
   getUserInfo() {
 
   }
-  setLoginState(){
+  setLoginState() {
     console.log('AUTH SERVICE SET LOGIN STATE !!!!!!!!!!!!!!!');
 
     this.isLoginState = true;

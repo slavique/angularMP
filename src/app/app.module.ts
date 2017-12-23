@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { AuthService } from './services/authorization.service';
+import { CoursesService } from './courses/services/courses.service';
 
 
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { FooterComponent } from './courses/footer/footer.component';
 import { BorderHighlightDirective } from './courses/directives/highlightBorder.directive';
 import { FormatDurationPipe } from './courses/pipes/formatDuration.pipe';
 import { OrderByPipe } from './courses/pipes/orderBy.pipe';
+import { FilterCoursesPipe } from './courses/pipes/filterCourses.pipe';
 
 
 
@@ -30,13 +33,18 @@ import { OrderByPipe } from './courses/pipes/orderBy.pipe';
     FooterComponent,
     BorderHighlightDirective,
     FormatDurationPipe,
-    OrderByPipe
+    OrderByPipe,
+    FilterCoursesPipe
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    CoursesService,
+    FilterCoursesPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

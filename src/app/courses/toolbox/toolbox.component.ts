@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges,
   DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
   AfterViewChecked, OnDestroy} from '@angular/core';
+import {CoursesService} from '../services/courses.service';
 
 @Component({
   selector: 'app-toolbox',
@@ -10,35 +11,35 @@ import { Component, OnInit, OnChanges,
 export class ToolboxComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   public searchString: string;
-  constructor() { }
-
+  constructor(
+    public coursesService: CoursesService
+  ) { }
+  findCourse() {
+    this.coursesService.setQueryString(this.searchString);
+  }
   ngOnChanges() {
-    console.log('ngOnChanges hook!!');
+    // console.log('ngOnChanges hook!!');
   }
 
   ngOnInit() {
-    console.log('ngOnInit hook!!');
+    // console.log('ngOnInit hook!!');
   }
   ngDoCheck() {
-    console.log('ngDoCheck hook!!');
+    // console.log('ngDoCheck hook!!');
   }
   ngAfterContentInit() {
-    console.log('ngAfterContentInit hook!!');
+    // console.log('ngAfterContentInit hook!!');
   }
   ngAfterContentChecked() {
-    console.log('ngAfterContentChecked hook!!');
+    // console.log('ngAfterContentChecked hook!!');
   }
   ngAfterViewInit() {
-    console.log('ngAfterViewInit hook!!');
+    // console.log('ngAfterViewInit hook!!');
   }
   ngAfterViewChecked() {
-    console.log('ngAfterViewChecked hook!!');
+    // console.log('ngAfterViewChecked hook!!');
   }
   ngOnDestroy() {
-    console.log('ngOnDestroy hook!!');
-  }
-
-  findCourse() {
-    console.log('FIND COURSE: ' + this.searchString);
+    // console.log('ngOnDestroy hook!!');
   }
 }

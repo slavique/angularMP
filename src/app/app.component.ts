@@ -7,8 +7,7 @@ import { AuthService } from './services/authorization.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, DoCheck {
-  private title = 'app';
-  public showLogin: boolean = true;
+  public showLogin = true;
   constructor(
     private _authService: AuthService
   ) { }
@@ -16,7 +15,7 @@ export class AppComponent implements OnInit, DoCheck {
   ngOnInit() {
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
     console.log('APP COMPONENT NG DO CHECK!!!!');
     this.showLogin = this._authService.getLoginState();
   }

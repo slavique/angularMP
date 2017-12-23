@@ -8,19 +8,18 @@ import { CoursesService } from './services/courses.service';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  providers: [CoursesService],
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   public courses: Course[];
   constructor(
-    private _coursesService: CoursesService
+    public coursesService: CoursesService,
   ) { }
 
   ngOnInit() {
     console.log('ngOnInit hook!!');
-    this.courses = this._coursesService.getCoursesList();
+    this.courses = this.coursesService.getCoursesList();
   }
 
   deleteCourse($event) {
@@ -28,10 +27,11 @@ export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterConten
     this.courses.splice(this.courses.indexOf($event.value), 1);
   }
   ngOnChanges() {
-    console.log('ngOnChanges hook!!');
+    console.log('COURSES => ngOnChanges hook!!');
   }
   ngDoCheck() {
-    console.log('ngDoCheck hook!!');
+    console.log('COURSES => ngDoCheck hook!!');
+    this.courses = this.coursesService.getCoursesList();
   }
   ngAfterContentInit() {
     console.log('ngAfterContentInit hook!!');
