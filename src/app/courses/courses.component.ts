@@ -13,6 +13,8 @@ import { CoursesService } from './services/courses.service';
 export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
   public courses: Course[];
+  public selectedCourse: Course;
+  public editCourse = false;
   constructor(
     public coursesService: CoursesService,
   ) { }
@@ -24,7 +26,16 @@ export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterConten
 
   deleteCourse($event) {
     console.log('delete COURSE: ' + $event.value.id);
-    this.courses.splice(this.courses.indexOf($event.value), 1);
+    this.coursesService.deleteCourse($event.value);
+  }
+  updateCourse($event) {
+    console.log('update COURSE: ' + $event.value.id);
+    this.coursesService.updateCourse($event.value);
+    this.editCourse = false;
+  }
+  triggerEditing($event) {
+    this.selectedCourse = $event.value;
+    this.editCourse = true;
   }
   ngOnChanges() {
     console.log('COURSES => ngOnChanges hook!!');
@@ -48,5 +59,4 @@ export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterConten
   ngOnDestroy() {
     console.log('ngOnDestroy hook!!');
   }
-
 }

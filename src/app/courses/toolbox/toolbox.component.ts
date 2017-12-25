@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges,
+import { Component, Output, EventEmitter, OnInit, OnChanges,
   DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
   AfterViewChecked, OnDestroy} from '@angular/core';
 import {CoursesService} from '../services/courses.service';
@@ -10,12 +10,16 @@ import {CoursesService} from '../services/courses.service';
 })
 export class ToolboxComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
+  @Output() add = new EventEmitter();
   public searchString: string;
   constructor(
     public coursesService: CoursesService
   ) { }
   findCourse() {
     this.coursesService.setQueryString(this.searchString);
+  }
+  addCourse() {
+    this.add.emit();
   }
   ngOnChanges() {
     // console.log('ngOnChanges hook!!');

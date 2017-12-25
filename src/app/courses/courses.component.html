@@ -1,6 +1,9 @@
-<ul *ngFor="let course of courses | orderBy : 'creationDate'">
-  <li>
-    <app-course [course]="course" (deletion)="deleteCourse($event)"></app-course>
-  </li>
-</ul>
+<div *ngIf="!editCourse">
+  <ul *ngFor="let course of courses | orderBy : 'creationDate'">
+    <li>
+      <app-course [course]="course" (deletion)="deleteCourse($event)" (edit)="triggerEditing($event)"></app-course>
+    </li>
+  </ul>
+</div>
+<app-edit-course *ngIf="editCourse" [selectedCourse]="selectedCourse" (update)="updateCourse($event)"></app-edit-course>
 <div class="no-data-message" *ngIf="courses.length == 0"><span>NO DATA. Feel free to add new course</span></div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck} from '@angular/core';
 import { AuthService } from './services/authorization.service';
+import { CoursesService } from './courses/services/courses.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,22 @@ import { AuthService } from './services/authorization.service';
 })
 export class AppComponent implements OnInit, DoCheck {
   public showLogin = true;
+  public courseCreation = false;
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _coursesService: CoursesService
   ) { }
 
   ngOnInit() {
   }
-
+  showCreateForm() {
+    this.courseCreation = true;
+  }
+  createCourse($event) {
+    this._coursesService.createCourse($event.value);
+    this.courseCreation = false;
+  }
   ngDoCheck() {
-    console.log('APP COMPONENT NG DO CHECK!!!!');
     this.showLogin = this._authService.getLoginState();
   }
 }

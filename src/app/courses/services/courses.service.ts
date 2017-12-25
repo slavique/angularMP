@@ -17,22 +17,24 @@ export class CoursesService {
     return this.getCoursesList().find(course => course.id === id);
   }
   createCourse(course: Course) {
+    let newCourses: any;
+    newCourses = this.courses;
+    newCourses.push(course);
+    this.courses = newCourses;
   }
   setQueryString(queryString: string) {
     console.log('COURSES SERVICE => set queryString:  ' + queryString);
     this.queryString = queryString;
     this.courses = this.coursesPipe.transform(this.courses, queryString);
   }
-  getQueryString() {
-    return this.queryString;
-  }
-  // filterCourses() {
-  //
-  // }
-  updateCourse() {
 
+  updateCourse(course: Course) {
+    let newCourses: any;
+    newCourses = this.courses;
+    newCourses[newCourses.indexOf(course.id)] = course;
+    this.courses = newCourses;
   }
-  // deleteCourse(course: Course){
-  //   this.courses.splice(this.courses.indexOf(course.id), 1);
-  // }
+  deleteCourse(course: Course) {
+    this.courses.splice(this.courses.indexOf(course), 1);
+  }
 }

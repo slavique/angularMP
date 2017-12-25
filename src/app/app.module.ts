@@ -18,6 +18,8 @@ import { BorderHighlightDirective } from './courses/directives/highlightBorder.d
 import { FormatDurationPipe } from './courses/pipes/formatDuration.pipe';
 import { OrderByPipe } from './courses/pipes/orderBy.pipe';
 import { FilterCoursesPipe } from './courses/pipes/filterCourses.pipe';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
+import { CreateCourseComponent } from './courses/create-course/create-course.component';
 
 
 
@@ -34,7 +36,9 @@ import { FilterCoursesPipe } from './courses/pipes/filterCourses.pipe';
     BorderHighlightDirective,
     FormatDurationPipe,
     OrderByPipe,
-    FilterCoursesPipe
+    FilterCoursesPipe,
+    EditCourseComponent,
+    CreateCourseComponent
   ],
   imports: [
     BrowserModule,
