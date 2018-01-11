@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AuthService {
@@ -31,6 +33,6 @@ export class AuthService {
   getLoginState() {
     console.log('AUTH SERVICE GET LOGIN STATE !!!!!!!!!!!!!!!');
 
-    return this.isLoginState;
+    return Observable.of(this.isLoginState);
   }
 }

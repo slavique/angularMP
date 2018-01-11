@@ -1,16 +1,14 @@
 <div class="edit-course col-md-6 col-md-offset-3">
-  <form>
-    <div class="form-group">
-      <label for="title">Course title</label>
-      <input type="text" class="form-control" id="title" [(ngModel)]="selectedCourse.title" #title/>
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <input type="text" class="form-control" id="description" [(ngModel)]="selectedCourse.description" #description/>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-primary" (click)="editCourse()">EDIT</button>
-      <button class="btn">CANCEL</button>
-    </div>
-  </form>
+  <div class="form-group">
+    <label for="title">Course title</label>
+    <input type="text" class="form-control" id="title" [(ngModel)]="selectedCourse.title" #title/>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description" [(ngModel)]="selectedCourse.description" #description/>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="editCourse()">EDIT</button>
+    <button class="btn">CANCEL</button>
+  </div>
 </div>
