@@ -10,16 +10,17 @@ import {CoursesService} from '../services/courses.service';
 })
 export class ToolboxComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
-  @Output() add = new EventEmitter();
+  @Output() outputEvent = new EventEmitter();
   public searchString: string;
   constructor(
     public coursesService: CoursesService
   ) { }
   findCourse() {
-    this.coursesService.setQueryString(this.searchString);
+    console.log('FIND COURSE: ' + this.searchString);
+    this.coursesService.searchCourses(this.searchString);
   }
   addCourse() {
-    this.add.emit();
+    this.outputEvent.emit({type: 'addCourse'});
   }
   ngOnChanges() {
     // console.log('ngOnChanges hook!!');

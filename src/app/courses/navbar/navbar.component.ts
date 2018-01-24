@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/authorization.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -8,17 +7,16 @@ import { AuthService } from '../../services/authorization.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public isAuthenticated: boolean;
+  @Input() isAuthenticated: boolean;
+  @Output() outputEvent = new EventEmitter();
 
   constructor(
-    private _authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.isAuthenticated = this._authService.isAuthenticated()
   }
   showLoginPage() {
     console.log('NAVBAR COMPONENT showLoginPage!!!!!!!!!!!!!!!');
-    this._authService.setLoginState();
+    this.outputEvent.emit();
   }
 }

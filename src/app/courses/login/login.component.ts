@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+
 import { AuthService } from '../../services/authorization.service';
 
 @Component({
@@ -7,9 +9,10 @@ import { AuthService } from '../../services/authorization.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  protected readonly storage = localStorage;
   public isLoginState: boolean = true;
-  public username: string;
-  public password: string;
+  @Output() close = new EventEmitter();
+
 
   constructor(
     private _authService: AuthService
@@ -21,6 +24,16 @@ export class LoginComponent implements OnInit {
 
   login(username: string, password: string) {
     console.log('user: ' + username + ', ' + 'password: ' + password);
-    this._authService.login(username, password);
+    const token = 1234;
+    this._authService.login(username, password, token).subscribe(
+      user => {
+        console.log(`FROM HTTP:::: username: ${user.name}, password: ${user.password}`);
+        this.isLoginState = false;
+        this.close.emit();
+        this.storage.setItem('userName', JSON.stringify(user.name));
+        this.storage.setItem('token', JSON.stringify(user.id));
+      },
+      () => console.log(`USER NOT FOUND!!!!!!!!!!!!`)
+    );
   }
 }

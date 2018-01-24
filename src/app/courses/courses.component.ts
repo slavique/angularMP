@@ -15,55 +15,34 @@ import { CoursesService } from './services/courses.service';
 })
 export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy {
-  private getCoursesSubscription: Subscription;
   private courseDeletionSubscription: Subscription;
   private courseUpdateSubscription: Subscription;
-  private getCoursesObservable: Observable<any>;
-  private courseDeletionObservable: Observable<any>;
-  private courseUpdateObservable: Observable<any>;
-  public courses: Course[];
-  public selectedCourse: Course;
-  public editCourse = false;
+  courses: Observable<Course[]>;
+  selectedCourse: Course;
+  editCourse = false;
   constructor(
     public coursesService: CoursesService,
   ) { }
 
   ngOnInit() {
-    this.getCoursesObservable = this.coursesService.getCoursesList();
-    this.getCoursesSubscription = this.getCoursesObservable.subscribe(
-      courses => this.courses = courses,
-      error => console.log('OBSERVABLE FAILED!!!'),
-      () => {
-        console.log('OBSERVABLE COMPLETED!!!');
-      }
-    );
+    this.courses = this.coursesService.coursesCast;
+    this.coursesService.getCoursesList();
   }
 
-
-
-  deleteCourse($event) {
+  deleteCourse($event): void {
     console.log('delete COURSE: ' + $event.value.id);
-    this.courseDeletionObservable = this.coursesService.deleteCourse($event.value);
-    this.courseDeletionSubscription = this.courseDeletionObservable.subscribe(
-      result => console.log('COURSE DELETED SUCCESSFULLY!!!'),
-      error => console.log('DELETION FAILED!!!'),
-      () => {
-        console.log('DELETION COMPLETED!!!');
-      }
+    const course = $event.value;
+    this.coursesService.deleteCourse(course).subscribe(
+      () => this.coursesService.getCoursesList()
     );
   }
+
   updateCourse($event) {
     console.log('update COURSE: ' + $event.value.id);
-
-    this.courseUpdateObservable = this.coursesService.updateCourse($event.value);
-    this.courseUpdateSubscription = this.courseUpdateObservable.subscribe(
+    this.courseUpdateSubscription = this.coursesService.updateCourse($event.value).subscribe(
       () => {
         console.log('COURSE UPDATED SUCCESSFULLY!!!');
         this.editCourse = false;
-      },
-      error => console.log('UPDATE FAILED!!!'),
-      () => {
-        console.log('UPDATE COMPLETED!!!');
       }
     );
   }
@@ -77,14 +56,6 @@ export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterConten
   }
   ngDoCheck() {
     console.log('COURSES => ngDoCheck hook!!');
-    // this.getCoursesObservable = this.coursesService.getCoursesList();
-    this.getCoursesSubscription = this.getCoursesObservable.subscribe(
-      courses => this.courses = courses,
-      error => console.log('OBSERVABLE FAILED!!!'),
-      () => {
-        console.log('OBSERVABLE COMPLETED!!!');
-      }
-    );
   }
   ngAfterContentInit() {
     console.log('ngAfterContentInit hook!!');
@@ -100,7 +71,6 @@ export class CoursesComponent implements OnInit, OnChanges, DoCheck, AfterConten
   }
   ngOnDestroy() {
     console.log('ngOnDestroy hook!!');
-    this.getCoursesSubscription.unsubscribe();
     if (this.courseDeletionSubscription) {
       this.courseDeletionSubscription.unsubscribe();
     }

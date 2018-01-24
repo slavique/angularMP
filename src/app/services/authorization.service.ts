@@ -1,16 +1,35 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+interface User {
+  name: string;
+  password: string;
+  id: number;
+}
 
 @Injectable()
 export class AuthService {
-  public isLoginState: boolean;
+  private usersUrl = 'api/users';  // URL to web api
   protected readonly storage = localStorage;
 
-  public login(user: string, token: string): void {
-    console.log('user: ' + user + ', ' + 'token: ' + token);
-    this.storage.setItem('userName', JSON.stringify(user));
-    this.storage.setItem('token', JSON.stringify(token));
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  public login(username: string, password: string, id: number): Observable<User> {
+    console.log('user: ' + username + ', ' + 'password: ' + password + ', token: ' + id);
+    return this.getUser(id);
+  }
+
+  getUser(token: number): Observable<User> {
+    const url = `${this.usersUrl}/${token}`;
+    return this.http.get<User>(url, httpOptions);
   }
 
   public logout(): void {
@@ -18,21 +37,4 @@ export class AuthService {
     this.storage.removeItem('token');
   }
 
-  isAuthenticated() {
-    return false;
-  }
-
-  getUserInfo() {
-
-  }
-  setLoginState() {
-    console.log('AUTH SERVICE SET LOGIN STATE !!!!!!!!!!!!!!!');
-
-    this.isLoginState = true;
-  }
-  getLoginState() {
-    console.log('AUTH SERVICE GET LOGIN STATE !!!!!!!!!!!!!!!');
-
-    return Observable.of(this.isLoginState);
-  }
 }

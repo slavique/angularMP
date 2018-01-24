@@ -1,5 +1,5 @@
 <div *ngIf="!editCourse">
-  <ul *ngFor="let course of courses | orderBy : 'creationDate'">
+  <ul *ngFor="let course of courses | async | orderBy : 'creationDate' ">
     <li>
       <app-course [course]="course" (deletion)="deleteCourse($event)" (edit)="triggerEditing($event)"></app-course>
     </li>

@@ -1,49 +1,49 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { of } from 'rxjs/observable/of';
+import { BehaviorSubject} from 'rxjs/BehaviorSubject';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {COURSES} from '../shared/courses';
 import {Course} from '../shared/course.model';
-import {FilterCoursesPipe} from '../pipes/filterCourses.pipe';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class CoursesService {
-  public courses = COURSES;
-  public queryString: string;
-  constructor(private coursesPipe: FilterCoursesPipe) {}
+  private coursesUrl = 'api/courses';  // URL to web api
+  public courses = new BehaviorSubject<Course[]>([]);
+  public coursesCast = this.courses.asObservable();
 
-  getCoursesList() {
-    console.log('COURSES SERVICE => get queryString:  ' + this.queryString);
-    return Observable.of(this.coursesPipe.transform(this.courses, this.queryString));
-  }
-  createCourse(course: Course) {
-    return Observable.of(this._addNewCourse(course));
-  }
-  setQueryString(queryString: string) {
-    console.log('COURSES SERVICE => set queryString:  ' + queryString);
-    this.queryString = queryString;
-    this.courses = this.coursesPipe.transform(this.courses, queryString);
-  }
+  constructor(
+    private http: HttpClient,
+  ) {}
 
-  updateCourse(course: Course) {
-    return Observable.of(this._updateCourse(course));
+  getCoursesList () {
+    this.http.get<Course[]>(this.coursesUrl, httpOptions).subscribe(
+      courses => this.courses.next(courses)
+    );
   }
-  deleteCourse(course: Course) {
-    return Observable.of(this.courses.splice(this.courses.indexOf(course), 1));
+  searchCourses(term: string){
+    if (!term.trim()) {
+      return of([]);
+    }
+    this.http.get<Course[]>(`api/courses/?title=${term}`).subscribe(
+      courses => this.courses.next(courses)
+    );
   }
+  createCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(this.coursesUrl, course, httpOptions);
+  }
+  updateCourse (course: Course): Observable<any> {
+    return this.http.put(this.coursesUrl, course, httpOptions);
+  }
+  deleteCourse (course: Course): Observable<Course> {
+    const id = course.id;
+    const url = `${this.coursesUrl}/${id}`;
 
-  _addNewCourse(course: Course) {
-    let newCourses: any;
-    newCourses = this.courses;
-    newCourses.push(course);
-    this.courses = newCourses;
-  }
-
-  _updateCourse(course: Course) {
-    let newCourses: any;
-    newCourses = this.courses;
-    newCourses[newCourses.indexOf(course.id)] = course;
-    this.courses = newCourses;
+    return this.http.delete<Course>(url, httpOptions);
   }
 }
