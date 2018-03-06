@@ -1,0 +1,8 @@
+<label *ngFor="let item of items">
+  <input type="checkbox"
+    (change)="setValue($event)"
+    [value]="item"
+    [checked]="value === item"
+    name="{{nameOption}}">
+      {{item}}
+</label>

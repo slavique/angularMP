@@ -1,0 +1,5 @@
+<form [formGroup]="myForm" novalidate>
+  <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                  [(ngModel)]="value"
+                  formControlName="myDate"></my-date-picker>
+</form>

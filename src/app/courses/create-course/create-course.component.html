@@ -1,18 +1,32 @@
 <div class="create-course col-md-6 col-md-offset-3">
-  <div class="form-group">
+  <form class="form-group" [formGroup]="courseForm">
     <label for="title">Course title</label>
-    <input type="text" class="form-control" id="title" [(ngModel)]="newCourse.title" #title/>
-  </div>
-  <div class="form-group">
+    <input type="text" class="form-control" id="title"
+           formControlName="title"/>
+    <!--<p>title value: {{ courseForm.get('title').value }}</p>-->
+    <!--<p>title vastatuslue: {{ courseForm.get('title').status }}</p>-->
+
     <label for="description">Description</label>
-    <input type="text" class="form-control" id="description" [(ngModel)]="newCourse.description" #description/>
-  </div>
-  <div class="form-group">
+    <textarea class="form-control" id="description"
+           formControlName="description">
+    </textarea><br>
+
+    <label for="date">Date</label>
+    <app-date-input formControlName='date' [(ngModel)]='selectedDate' id="date">
+    </app-date-input><br>
+    <!--TODO: remove this: createcoursecomponent: {{selectedDate | json}}<br>-->
+
     <label for="duration">Duration</label>
-    <input type="text" class="form-control" id="duration" [(ngModel)]="newCourse.duration" #duration/>
-  </div>
-  <div class="form-group">
+    <input type="text" class="form-control" id="duration"
+           formControlName="duration"/>
+    <br/>
+
+    <label for="authors1">Authors with custom checklist</label>
+    <app-custom-checklist id='authors1' [items]='authors' nameOption="authors"></app-custom-checklist>
+
     <button class="btn btn-primary" (click)="createCourse()">CREATE</button>
     <button class="btn">CANCEL</button>
-  </div>
+  </form>
 </div>
+<!--<p>Form value: {{ courseForm.value | json }}</p>-->
+<!--<p>Form status: {{ courseForm.status | json }}</p>-->
