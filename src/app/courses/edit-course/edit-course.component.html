@@ -1,11 +1,11 @@
 <div class="edit-course col-md-6 col-md-offset-3">
   <div class="form-group">
     <label for="title">Course title</label>
-    <input type="text" class="form-control" id="title" [(ngModel)]="selectedCourse.title" #title/>
+    <input *ngIf="course" type="text" class="form-control" id="title" [(ngModel)]="course.title" #title/>
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <input type="text" class="form-control" id="description" [(ngModel)]="selectedCourse.description" #description/>
+    <input *ngIf="course" type="text" class="form-control" id="description" [(ngModel)]="course.description" #description/>
   </div>
   <div class="form-group">
     <button class="btn btn-primary" (click)="editCourse()">EDIT</button>

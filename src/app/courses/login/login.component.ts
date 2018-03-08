@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Router} from '@angular/router';
 
 
 import { AuthService } from '../../services/authorization.service';
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
         this.close.emit();
         this.storage.setItem('userName', JSON.stringify(user.name));
         this.storage.setItem('token', JSON.stringify(user.id));
+        this.router.navigate(['']);
       },
       () => console.log(`USER NOT FOUND!!!!!!!!!!!!`)
     );

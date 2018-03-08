@@ -37,6 +37,11 @@ export class CoursesService {
   createCourse(course: Course): Observable<Course> {
     return this.http.post<Course>(this.coursesUrl, course, httpOptions);
   }
+
+  getCourseById(id: string) {
+    return this.http.get<Course>(`api/courses/?id=${id}`);
+  }
+
   updateCourse (course: Course): Observable<any> {
     return this.http.put(this.coursesUrl, course, httpOptions);
   }

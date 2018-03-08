@@ -13,6 +13,7 @@ import { CoursesService } from './courses/services/courses.service';
 
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseComponent } from './courses/course/course.component';
 import { LoginComponent } from './courses/login/login.component';
@@ -61,6 +62,7 @@ import { CustomChecklistComponent } from './courses/custom-checklist/custom-chec
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
+    AppRoutingModule,
     MyDatePickerModule
   ],
   providers: [
@@ -70,4 +72,4 @@ import { CustomChecklistComponent } from './courses/custom-checklist/custom-chec
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

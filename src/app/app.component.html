@@ -1,9 +1,4 @@
-<app-navbar (outputEvent)="showLoginScreen()" [isAuthenticated]="authState"></app-navbar>
-<div *ngIf="!courseCreation">
-  <app-toolbox *ngIf="!showLogin" (outputEvent)="processToolboxEvent($event)"></app-toolbox>
-  <app-login *ngIf="showLogin" (close)="closeLoginScreen()"></app-login>
-  <app-courses *ngIf="!showLogin"></app-courses>
-</div>
-<app-create-course *ngIf="courseCreation" (create)="createCourse($event)"></app-create-course>
+<app-navbar [isAuthenticated]="authState"></app-navbar>
+<router-outlet></router-outlet>
 <app-footer></app-footer>
 

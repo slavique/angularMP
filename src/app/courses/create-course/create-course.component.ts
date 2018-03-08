@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Course } from '../shared/course.model';
 import { authors } from '../shared/mock-data.model';
+import {Router} from '@angular/router';
+import {CoursesService} from '../services/courses.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-create-course',
@@ -10,6 +13,7 @@ import { authors } from '../shared/mock-data.model';
   styleUrls: ['./create-course.component.css']
 })
 export class CreateCourseComponent implements OnInit {
+  private courseCreationSubscription: Subscription;
   newCourse: Course;
   authors = authors;
   selectedDate: any;
@@ -17,7 +21,11 @@ export class CreateCourseComponent implements OnInit {
   courseForm: FormGroup;
 
   @Output() create = new EventEmitter();
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private _coursesService: CoursesService,
+    private router: Router
+  ) {
     this.createCourseForm();
   }
 
@@ -40,9 +48,16 @@ export class CreateCourseComponent implements OnInit {
   createCourse() {
     this.newCourse = this.courseForm.value;
     this.newCourse.date = this.courseForm.value.date.jsdate;
-    this.create.emit({ value: this.newCourse });
+    this.courseCreationSubscription = this._coursesService.createCourse(this.newCourse).subscribe(
+      () => {
+        console.log('CREATION SUCCESSFUL!!!');
+        this.router.navigate(['']);
+      },
+      error => console.log('CREATION FAILED!!!'),
+      () => {
+        console.log('CREATION COMPLETED!!!');
+      }
+    );
+
   }
-  // TODO: Remove this when we're done
-  // get diagnostic() { return JSON.stringify(this.newCourse); }
-  // get diagnostic() { return JSON.stringify(this.courseForm.value); }
 }

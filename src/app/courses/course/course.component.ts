@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../shared/course.model';
+import {Router, NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -12,7 +13,7 @@ export class CourseComponent implements OnInit {
   @Output() deletion = new EventEmitter();
   @Output() edit = new EventEmitter();
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -25,6 +26,9 @@ export class CourseComponent implements OnInit {
     }
   }
   editCourse() {
-    this.edit.emit({value: this.course});
+    const course: NavigationExtras = {
+      queryParams: this.course
+    };
+    this.router.navigate(['edit'], course);
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,15 +9,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @Input() isAuthenticated: boolean;
-  @Output() outputEvent = new EventEmitter();
-
-  constructor(
-  ) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
   showLoginPage() {
-    console.log('NAVBAR COMPONENT showLoginPage!!!!!!!!!!!!!!!');
-    this.outputEvent.emit();
+    this.router.navigate(['/login']);
+  }
+  navigateToCourses() {
+    this.router.navigate(['']);
   }
 }
