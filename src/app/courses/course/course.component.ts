@@ -11,7 +11,6 @@ import {Router, NavigationExtras} from '@angular/router';
 export class CourseComponent implements OnInit {
   @Input('course') course: Course;
   @Output() deletion = new EventEmitter();
-  @Output() edit = new EventEmitter();
 
   constructor(private router: Router) {
   }

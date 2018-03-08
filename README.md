@@ -1,6 +1,7 @@
-# TASK#8 -- FORMS
+# TASK#9 -- ROUTING
 
 What was done:
-1. Implemented ADD COURSE component as a reactive form;
-2. Added Date input as a separate compopnent. Implemented ng_value_accessor and ng_validators;
-3. Implemented Authors checklist Input as a separate component. Implemented ng_value_accessor and ng_validators;
+1. Implemented navigation to courses;
+2. Implemented navigation to login;
+3. Implemented navigation to createCourseComponent;
+4. Implemented navigation with parameters to editCourseComponent;
