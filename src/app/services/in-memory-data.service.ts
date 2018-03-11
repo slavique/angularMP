@@ -7,6 +7,11 @@ export class InMemoryDataService implements InMemoryDbService {
         name: 'user1',
         password: '1111',
         id: 1234
+      },
+      {
+        name: 'user2',
+        password: '2222',
+        id: 8989
       }
     ];
     const courses = [

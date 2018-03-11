@@ -5,11 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { MyDatePickerModule } from 'mydatepicker';
 
 import { AuthService } from './services/authorization.service';
 import { CoursesService } from './courses/services/courses.service';
+
+import { loginReducer} from './reducers/general';
 
 
 import { AppComponent } from './app.component';
@@ -63,6 +67,8 @@ import { CustomChecklistComponent } from './courses/custom-checklist/custom-chec
       InMemoryDataService, { dataEncapsulation: false }
     ),
     AppRoutingModule,
+    StoreModule.forRoot({isAuthenticated: loginReducer}),
+    StoreDevtoolsModule.instrument(),
     MyDatePickerModule
   ],
   providers: [

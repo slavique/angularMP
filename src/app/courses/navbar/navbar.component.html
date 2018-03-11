@@ -1,9 +1,7 @@
 <div class="navbar">
-  <img class="logo" src="logo.png" alt="LOGO" height="4%" width="4%">
+  <img class="logo" alt="LOGO" height="4%" width="4%">
   <span (click)="navigateToCourses()">COURSES</span>
   <div class="sign-in">
-    <span *ngIf="!isAuthenticated" (click)="showLoginPage()">Log in</span>
-    <br>
-    <span *ngIf="isAuthenticated">Log out</span>
+    <span (click)="showLoginPage()">{{buttonText}}</span>
   </div>
 </div>

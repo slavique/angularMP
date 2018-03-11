@@ -22,9 +22,13 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
-  public login(username: string, password: string, id: number): Observable<User> {
+  public login(username: string, password: string, id: number): Observable<User[]> {
     console.log('user: ' + username + ', ' + 'password: ' + password + ', token: ' + id);
-    return this.getUser(id);
+    return this.getUsers();
+  }
+
+  getUsers() {
+    return this.http.get<User[]>(this.usersUrl);
   }
 
   getUser(token: number): Observable<User> {

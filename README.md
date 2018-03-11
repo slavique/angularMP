@@ -1,7 +1,7 @@
-# TASK#9 -- ROUTING
+# TASK#10 -- REDUX
 
 What was done:
-1. Implemented navigation to courses;
-2. Implemented navigation to login;
-3. Implemented navigation to createCourseComponent;
-4. Implemented navigation with parameters to editCourseComponent;
+1. Installed ngrx/core, ngrx/store;
+2. Install ngrx/store-devtools.;
+3. Used ngrx for authentication service;
+4. Connected loginComponent and navbarComponent to store;

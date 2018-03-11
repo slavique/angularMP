@@ -3,12 +3,13 @@
   <form>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" name="username" #username/>
+      <input type="text" id="username" class="form-control" name="username" #username/>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" #password/>
+      <input type="password" id="password" class="form-control" name="password" #password/>
     </div>
+    <p class="login-error" *ngIf="isInvalidCredentials">Username or password is incorrect!</p>
     <div class="form-group">
       <button class="btn btn-primary" (click)="login(username.value, password.value)">Login</button>
     </div>
